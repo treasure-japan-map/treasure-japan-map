@@ -8,8 +8,8 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyokasho NK-R",serif}
 body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyokasho NK-R",serif;background:#FFFFFF;color:#1A1A2E;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:32px 16px}
-.wrap{display:flex;gap:0;width:100%;max-width:980px;background:#fff;border-radius:16px;border:1px solid #E0DFD8;overflow:hidden;min-height:800px}
-.map-area{flex:1;min-width:0;padding:28px 20px 28px 12px;display:flex;gap:0}
+.wrap{width:100%;max-width:980px;background:#fff;border-radius:16px;border:1px solid #E0DFD8;overflow:hidden}
+.map-area{padding:28px 28px 28px 20px;display:flex;gap:0}
 .axis{display:flex;flex-direction:column;justify-content:space-around;align-items:center;padding:48px 0 18px;margin-right:10px;border-right:1px dashed #CCCBC4;width:24px;flex-shrink:0}
 .axis span{font-size:11px;color:#9999AA;writing-mode:vertical-rl;letter-spacing:2px}
 .content{flex:1;min-width:0}
@@ -26,14 +26,6 @@ body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyoka
 .card-ch{font-size:10px;font-weight:600;display:block;margin-bottom:3px}
 .card-title{font-size:10px;display:block;opacity:.88;line-height:1.4}
 .hint{font-size:11px;color:#BBB;text-align:center;margin-top:14px;padding-bottom:6px}
-.panel{width:0;overflow:hidden;transition:width .3s ease;border-left:1px solid #E0DFD8;background:#fff}
-.panel.open{width:290px}
-.panel-inner{width:290px;padding:28px 20px;height:100%}
-.panel-close{float:right;background:none;border:1px solid #E0DFD8;border-radius:50%;width:26px;height:26px;cursor:pointer;color:#888;font-size:15px;line-height:24px;text-align:center}
-.panel-close:hover{background:#f0f0f0}
-.panel-tag{display:inline-block;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px}
-.panel-title{font-size:16px;font-weight:600;color:#1A1A2E;margin-bottom:14px;line-height:1.6;clear:both}
-.panel-body{font-size:13px;color:#555;line-height:2.0}
 .g-purple{background:#FFFFFF;border-color:#534AB7}
 .g-purple .group-title{color:#3C3489}
 .g-purple .card{background:#534AB7;color:#EEEDFE}
@@ -49,24 +41,39 @@ body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyoka
 .g-blue{background:#FFFFFF;border-color:#185FA5}
 .g-blue .group-title{color:#0C447C}
 .g-blue .card{background:#185FA5;color:#E6F1FB}
-.g-gray{background:#FFFFFF;border-color:#C9991A}
-.g-gray .group-title{color:#7A5C00;font-size:13px;margin-bottom:10px;letter-spacing:1px}
-.g-gray .card{background:#C9991A;color:#FFFFFF;padding:12px 6px}
-.g-gray .card-title{font-size:12px;opacity:1;font-weight:600}
-.core-section{margin-top:28px;padding:24px 20px;background:#FFFFFF;border-radius:14px;border:2.5px solid #C9991A}
-.core-label{font-size:12px;color:#C9991A;letter-spacing:4px;text-align:center;margin-bottom:16px;font-weight:600}
+.core-section{margin-top:28px;padding:24px 20px;background:#0F2A5E;border-radius:14px;border:2.5px solid #0F2A5E}
+.core-label{font-size:12px;color:#93B8E8;letter-spacing:4px;text-align:center;margin-bottom:16px;font-weight:600}
 .core-cards{display:flex;align-items:stretch;gap:12px;justify-content:center}
-.core-arrow{display:flex;align-items:center;flex-shrink:0;padding:0 2px}
-.core-card{border-radius:10px;padding:20px 14px;cursor:pointer;transition:background .2s,transform .15s;border:2px solid #C9991A;background:#C9991A;text-align:center;flex:1;font-size:15px;font-weight:600;color:#FFFFFF;letter-spacing:1.5px}
-.core-card:hover{background:#B8880F;transform:translateY(-2px)}
+.core-card{border-radius:10px;padding:20px 14px;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;border:1.5px solid #2B5BA8;background:#163B7A;text-align:center;flex:1;font-size:15px;font-weight:600;color:#EEF4FF;letter-spacing:1.5px}
+.core-card:hover{background:#1E4D94;border-color:#93B8E8;transform:translateY(-2px);box-shadow:0 4px 18px rgba(15,42,94,.6)}
 .core-card:active{transform:scale(.98)}
 .row-arrow{display:flex;align-items:center;justify-content:center;height:14px;margin:-2px 0}
 .row-arrow svg{display:block}
 .action-bar{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
-.btn-flip{background:#C9991A;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;font-family:inherit;letter-spacing:1px;transition:background .2s,transform .15s}
-.btn-flip:hover{background:#B8880F;transform:translateY(-2px)}
+.btn-flip{background:#6B7280;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;font-family:inherit;letter-spacing:1px;transition:background .2s,transform .15s}
+.btn-flip:hover{background:#4B5563;transform:translateY(-2px)}
 .btn-site{background:#fff;color:#1A1A2E;border:2px solid #534AB7;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;font-family:inherit;letter-spacing:1px;text-decoration:none;transition:background .2s,transform .15s}
 .btn-site:hover{background:#EEEDFE;transform:translateY(-2px)}
+.media-section{margin-top:18px;padding:20px;background:#F8F7F4;border-radius:14px;border:1.5px solid #E0DFD8}
+.media-label{font-size:11px;color:#999;letter-spacing:3px;text-align:center;margin-bottom:14px;font-weight:600}
+.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.media-card{border-radius:8px;padding:11px 12px;cursor:pointer;transition:transform .15s,box-shadow .15s;border:1.5px solid #E0DFD8;background:#fff;text-align:left;display:flex;align-items:flex-start;gap:10px;text-decoration:none;color:inherit}
+.media-card:hover{transform:translateY(-2px);box-shadow:0 3px 12px rgba(0,0,0,.1);border-color:#AAAACC}
+.media-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.media-info{flex:1;min-width:0}
+.media-title{font-size:11px;font-weight:600;color:#1A1A2E;line-height:1.5;margin-bottom:3px}
+.media-sub{font-size:10px;color:#888;line-height:1.4}
+.media-news .media-card{background:#FFF8F0;border-color:#E8C87A;height:100%}
+.media-news .media-title{color:#7A5C00}
+.popover-overlay{display:none;position:fixed;inset:0;z-index:900}
+.popover-overlay.open{display:block}
+.popover{position:fixed;z-index:1000;width:280px;background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.18);border:1px solid #E0DFD8;padding:20px;opacity:0;transform:scale(.95) translateY(6px);transition:opacity .18s,transform .18s;pointer-events:none}
+.popover.visible{opacity:1;transform:scale(1) translateY(0);pointer-events:auto}
+.popover-close{float:right;background:none;border:1px solid #E0DFD8;border-radius:50%;width:24px;height:24px;cursor:pointer;color:#888;font-size:14px;line-height:22px;text-align:center}
+.popover-close:hover{background:#f0f0f0}
+.popover-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+.popover-title{font-size:15px;font-weight:600;color:#1A1A2E;margin-bottom:12px;line-height:1.6;clear:both}
+.popover-body{font-size:12px;color:#555;line-height:1.9}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center}
 .modal-overlay.open{display:flex}
 .modal-box{background:#fff;border-radius:14px;overflow:hidden;width:92vw;max-width:960px;height:88vh;display:flex;flex-direction:column;box-shadow:0 8px 40px rgba(0,0,0,.35)}
@@ -85,25 +92,25 @@ body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyoka
     </div>
     <div class="content">
       <div class="map-title">静けさが人を変える ― Treasure Japan 創業物語</div>
-      <div class="map-sub">章立て構成マップ　― 各章をクリックすると右側に説明が開きます</div>
+      <div class="map-sub">章立て構成マップ　― 各章をクリックすると説明が表示されます</div>
       <div class="rows">
         <div class="row">
           <div class="group g-purple">
             <div class="group-title">① 自己・人生の軌跡</div>
             <div class="cards" style="grid-template-columns:1fr 1fr">
-              <button class="card" onclick="openPanel('preface')"><span class="card-ch">序章</span><span class="card-title">なぜ今なのか</span></button>
-              <button class="card" onclick="openPanel('ch1')"><span class="card-ch">第一章</span><span class="card-title">私は何者か</span></button>
-              <button class="card" onclick="openPanel('ch2')"><span class="card-ch">第二章</span><span class="card-title">遠回りの人生</span></button>
-              <button class="card" onclick="openPanel('ch4')"><span class="card-ch">第四章</span><span class="card-title">挫折という贈り物</span></button>
+              <button class="card" onclick="openPop(this,'preface')"><span class="card-ch">序章</span><span class="card-title">なぜ今なのか</span></button>
+              <button class="card" onclick="openPop(this,'ch1')"><span class="card-ch">第一章</span><span class="card-title">私は何者か</span></button>
+              <button class="card" onclick="openPop(this,'ch2')"><span class="card-ch">第二章</span><span class="card-title">遠回りの人生</span></button>
+              <button class="card" onclick="openPop(this,'ch4')"><span class="card-ch">第四章</span><span class="card-title">挫折という贈り物</span></button>
             </div>
           </div>
           <div class="group g-coral">
             <div class="group-title">② 転換点・内なる目覚め</div>
             <div class="cards" style="grid-template-columns:1fr 1fr">
-              <button class="card" onclick="openPanel('ch3')"><span class="card-ch">第三章</span><span class="card-title">美との出会い</span></button>
-              <button class="card" onclick="openPanel('ch5')"><span class="card-ch">第五章</span><span class="card-title">死を覚悟して</span></button>
-              <button class="card" onclick="openPanel('ch6')"><span class="card-ch">第六章</span><span class="card-title">静けさの価値</span></button>
-              <button class="card" onclick="openPanel('ch7')"><span class="card-ch">第七章</span><span class="card-title">無音を奏でる人</span></button>
+              <button class="card" onclick="openPop(this,'ch3')"><span class="card-ch">第三章</span><span class="card-title">美との出会い</span></button>
+              <button class="card" onclick="openPop(this,'ch5')"><span class="card-ch">第五章</span><span class="card-title">死を覚悟して</span></button>
+              <button class="card" onclick="openPop(this,'ch6')"><span class="card-ch">第六章</span><span class="card-title">静けさの価値</span></button>
+              <button class="card" onclick="openPop(this,'ch7')"><span class="card-ch">第七章</span><span class="card-title">無音を奏でる人</span></button>
             </div>
           </div>
         </div>
@@ -114,17 +121,17 @@ body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyoka
           <div class="group g-teal">
             <div class="group-title">③ 書・同志との出会い</div>
             <div class="cards" style="grid-template-columns:1fr 1fr">
-              <button class="card" onclick="openPanel('ch8')"><span class="card-ch">第八章</span><span class="card-title">同志との出会い・宍戸瑞鳳</span></button>
-              <button class="card" onclick="openPanel('ch9')"><span class="card-ch">第九章</span><span class="card-title">書は人なり</span></button>
+              <button class="card" onclick="openPop(this,'ch8')"><span class="card-ch">第八章</span><span class="card-title">同志との出会い・宍戸瑞鳳</span></button>
+              <button class="card" onclick="openPop(this,'ch9')"><span class="card-ch">第九章</span><span class="card-title">書は人なり</span></button>
             </div>
           </div>
           <div class="group g-amber">
             <div class="group-title">④ ビジョン・世界観</div>
             <div class="cards" style="grid-template-columns:1fr 1fr">
-              <button class="card" onclick="openPanel('ch10')"><span class="card-ch">第十章</span><span class="card-title">なぜ外国人か</span></button>
-              <button class="card" onclick="openPanel('ch11')"><span class="card-ch">第十一章</span><span class="card-title">世界に必要な理由</span></button>
-              <button class="card" onclick="openPanel('ch12')"><span class="card-ch">第十二章</span><span class="card-title">守破離</span></button>
-              <button class="card" onclick="openPanel('ch13')"><span class="card-ch">第十三章</span><span class="card-title">Not a Tour.</span></button>
+              <button class="card" onclick="openPop(this,'ch10')"><span class="card-ch">第十章</span><span class="card-title">なぜ外国人か</span></button>
+              <button class="card" onclick="openPop(this,'ch11')"><span class="card-ch">第十一章</span><span class="card-title">世界に必要な理由</span></button>
+              <button class="card" onclick="openPop(this,'ch12')"><span class="card-ch">第十二章</span><span class="card-title">守破離</span></button>
+              <button class="card" onclick="openPop(this,'ch13')"><span class="card-ch">第十三章</span><span class="card-title">Not a Tour.</span></button>
             </div>
           </div>
         </div>
@@ -135,10 +142,10 @@ body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyoka
           <div class="group g-blue" style="flex:1">
             <div class="group-title">⑤ 体験・感動・人生の結び</div>
             <div class="cards" style="grid-template-columns:repeat(4,1fr)">
-              <button class="card" onclick="openPanel('ch14')"><span class="card-ch">第十四章</span><span class="card-title">A Quiet Turning.</span></button>
-              <button class="card" onclick="openPanel('ch15')"><span class="card-ch">第十五章</span><span class="card-title">まだ見ぬ自分</span></button>
-              <button class="card" onclick="openPanel('ch16')"><span class="card-ch">第十六章</span><span class="card-title">感動という仕事</span></button>
-              <button class="card" onclick="openPanel('epilogue')"><span class="card-ch">終章</span><span class="card-title">人生もまた一幅の書</span></button>
+              <button class="card" onclick="openPop(this,'ch14')"><span class="card-ch">第十四章</span><span class="card-title">A Quiet Turning.</span></button>
+              <button class="card" onclick="openPop(this,'ch15')"><span class="card-ch">第十五章</span><span class="card-title">まだ見ぬ自分</span></button>
+              <button class="card" onclick="openPop(this,'ch16')"><span class="card-ch">第十六章</span><span class="card-title">感動という仕事</span></button>
+              <button class="card" onclick="openPop(this,'epilogue')"><span class="card-ch">終章</span><span class="card-title">人生もまた一幅の書</span></button>
             </div>
           </div>
         </div>
@@ -146,9 +153,9 @@ body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyoka
       <div class="core-section">
         <div class="core-label">― 核心メッセージ ―</div>
         <div class="core-cards">
-          <button class="core-card" onclick="openPanel('msg2')"><span>Not a Tour.</span></button>
-          <button class="core-card" onclick="openPanel('msg1')"><span>書は人なり</span></button>
-          <button class="core-card" onclick="openPanel('msg3')"><span>A Quiet Turning.</span></button>
+          <button class="core-card" onclick="openPop(this,'msg2')"><span>Not a Tour.</span></button>
+          <button class="core-card" onclick="openPop(this,'msg1')"><span>書は人なり</span></button>
+          <button class="core-card" onclick="openPop(this,'msg3')"><span>A Quiet Turning.</span></button>
         </div>
       </div>
       <div class="action-bar">
@@ -161,18 +168,65 @@ body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyoka
           🌐 公式サイトへ
         </a>
       </div>
-      <div class="hint">← 各章・メッセージをクリックすると右側に説明が表示されます</div>
-    </div>
-  </div>
-  <div class="panel" id="panel">
-    <div class="panel-inner">
-      <button class="panel-close" onclick="closePanel()">×</button>
-      <div class="panel-tag" id="panel-tag"></div>
-      <div class="panel-title" id="panel-title"></div>
-      <div class="panel-body" id="panel-body"></div>
+      <div class="media-section">
+        <div class="media-label">― 体験動画・メディア掲載 ―</div>
+        <div class="media-grid">
+          <a class="media-card" href="https://youtu.be/PXatMJB-ii8" target="_blank" rel="noopener">
+            <div class="media-icon">▶️</div>
+            <div class="media-info">
+              <div class="media-title">❶ 大筆書道（2分01秒）</div>
+              <div class="media-sub">書家と寺院スタッフによる、汗散る真夏の大筆パフォーマンス！<br>📍 簗田寺</div>
+            </div>
+          </a>
+          <a class="media-card" href="https://youtu.be/JkhQ1YHgb1U" target="_blank" rel="noopener">
+            <div class="media-icon">▶️</div>
+            <div class="media-info">
+              <div class="media-title">❷ 書道・着物・茶道（2分45秒）</div>
+              <div class="media-sub">スイスから清澄の池のほとりで、秋の夜の日本文化体験！<br>📍 清澄庭園</div>
+            </div>
+          </a>
+          <a class="media-card" href="https://youtu.be/oL2XdIEl8xQ" target="_blank" rel="noopener">
+            <div class="media-icon">▶️</div>
+            <div class="media-info">
+              <div class="media-title">❸ 書道・和装・坐禅・茶道（3分01秒）</div>
+              <div class="media-sub">フランス人四人家族、冬の寺で禅と日本文化をこよなく味わう！<br>📍 簗田寺</div>
+            </div>
+          </a>
+          <div class="media-news">
+            <a class="media-card" href="https://adv.tokyo-np.co.jp/prtimes/article108726/" target="_blank" rel="noopener" style="height:100%">
+              <div class="media-icon">📰</div>
+              <div class="media-info">
+                <div class="media-title">■ メディア掲載</div>
+                <div class="media-title" style="color:#7A5C00">東京新聞</div>
+                <div class="media-sub" style="margin-top:6px">記事を読む →</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="hint">← 各章・メッセージをクリックすると説明が表示されます</div>
     </div>
   </div>
 </div>
+
+<div class="popover-overlay" id="popOverlay" onclick="closePop()"></div>
+<div class="popover" id="popover">
+  <button class="popover-close" onclick="closePop()">×</button>
+  <div class="popover-tag" id="pop-tag"></div>
+  <div class="popover-title" id="pop-title"></div>
+  <div class="popover-body" id="pop-body"></div>
+</div>
+
+<div class="modal-overlay" id="flipModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span>📖 Treasure Japan — フリップブック</span>
+      <button class="modal-close" onclick="closeFlipbook()">×</button>
+    </div>
+    <iframe class="modal-iframe" id="flipFrame" src="" title="Treasure Japan Flipbook" allowfullscreen></iframe>
+  </div>
+</div>
+
 <script>
 const DATA = {
   preface:  {tag:"序章",color:"#534AB7",bg:"#EEEDFE",title:"なぜ、今、Treasure Japanなのか",body:"59歳にして、長年温めてきた想いをついに形にする。単なる起業ではなく、人生をかけた挑戦。成功も失敗も挫折も——すべてが今この瞬間へとつながっている。まるで温かな何かに包まれながら、静かに背中を押されているような感覚の中、新しい物語が始まる。"},
@@ -193,55 +247,56 @@ const DATA = {
   ch15:     {tag:"第十五章",color:"#185FA5",bg:"#E6F1FB",title:"まだ見ぬ自分との出会い",body:"大きな紙の前に立ち、大きな筆を持ち、静寂の中で集中する。その時、人は普段の自分から少し離れ、肩書きも年齢も立場も忘れ、本来の自分に近づいていく。書き終えた後の表情には、書く前とは違う人がいる。人はいつからでも変われる。"},
   ch16:     {tag:"第十六章",color:"#185FA5",bg:"#E6F1FB",title:"感動という仕事",body:"大筆の音、墨を磨る音、おりんの余韻、鳥の声、雨音、寺の空気、真剣なまなざし——それらすべてが重なり一つの体験になる。作りたいのは作品ではなく感動。心が震える時間。人生の中で忘れられない記憶。それが私たちの仕事。"},
   epilogue: {tag:"終章",color:"#185FA5",bg:"#E6F1FB",title:"人生もまた、一幅の書",body:"証券会社も、画廊も、画商も、リフォームの仕事も、病も、出会いも——すべてが今の一本の線になっている。Treasure Japanは会社の名前だが、私にとっては人生そのものへの感謝の表現。世界中の人々と共に、新しい物語を紡いでいきたい。"},
-  msg1:     {tag:"核心",color:"#7A5C00",bg:"#FDF6E3",title:"書は人なり",body:"筆は嘘をつかない。焦りも迷いも優しさも大胆さも、その人の呼吸・心・人生のすべてが線となって現れる。上手な字より、その人自身が現れること——それを大切にしたい。"},
-  msg2:     {tag:"核心",color:"#7A5C00",bg:"#FDF6E3",title:"Not a Tour.",body:"観光ではなく、名所巡りでもなく、写真を撮って終わる体験でもない。その人自身と向き合う時間を提供する。"},
-  msg3:     {tag:"核心",color:"#7A5C00",bg:"#FDF6E3",title:"A Quiet Turning.",body:"大きな転機よりも、静かな変化を大切にする。価値観が少し変わる、呼吸が少し深くなる——そんな静かな転機がTreasure Japanの願い。"},
+  msg1:     {tag:"核心",color:"#EEF4FF",bg:"#163B7A",title:"書は人なり",body:"筆は嘘をつかない。焦りも迷いも優しさも大胆さも、その人の呼吸・心・人生のすべてが線となって現れる。上手な字より、その人自身が現れること——それを大切にしたい。"},
+  msg2:     {tag:"核心",color:"#EEF4FF",bg:"#163B7A",title:"Not a Tour.",body:"観光ではなく、名所巡りでもなく、写真を撮って終わる体験でもない。その人自身と向き合う時間を提供する。"},
+  msg3:     {tag:"核心",color:"#EEF4FF",bg:"#163B7A",title:"A Quiet Turning.",body:"大きな転機よりも、静かな変化を大切にする。価値観が少し変わる、呼吸が少し深くなる——そんな静かな転機がTreasure Japanの願い。"},
 };
-function openPanel(key) {
+
+function openPop(btn, key) {
   const d = DATA[key];
   if (!d) return;
-  const tag = document.getElementById('panel-tag');
+  const tag = document.getElementById("pop-tag");
   tag.textContent = d.tag;
   tag.style.background = d.bg;
   tag.style.color = d.color;
-  document.getElementById('panel-title').textContent = d.title;
-  document.getElementById('panel-body').textContent = d.body;
-  document.getElementById('panel').classList.add('open');
+  document.getElementById("pop-title").textContent = d.title;
+  document.getElementById("pop-body").textContent = d.body;
+  const pop = document.getElementById("popover");
+  pop.classList.remove("visible");
+  const rect = btn.getBoundingClientRect();
+  const pw = 280, margin = 8;
+  const scrollY = window.scrollY || window.pageYOffset;
+  let left = rect.left + rect.width / 2 - pw / 2;
+  if (left + pw + margin > window.innerWidth) left = window.innerWidth - pw - margin;
+  if (left < margin) left = margin;
+  const popH = 230;
+  let top;
+  if (rect.bottom + popH + margin < window.innerHeight) {
+    top = rect.bottom + scrollY + margin;
+  } else {
+    top = rect.top + scrollY - popH - margin;
+  }
+  pop.style.left = left + "px";
+  pop.style.top = top + "px";
+  document.getElementById("popOverlay").classList.add("open");
+  requestAnimationFrame(() => pop.classList.add("visible"));
 }
-function closePanel() {
-  document.getElementById('panel').classList.remove('open');
+function closePop() {
+  document.getElementById("popover").classList.remove("visible");
+  document.getElementById("popOverlay").classList.remove("open");
 }
-</script>
-<!-- Flipbook Modal -->
-<div class="modal-overlay" id="flipModal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <span>📖 Treasure Japan — フリップブック</span>
-      <button class="modal-close" onclick="closeFlipbook()">×</button>
-    </div>
-    <iframe
-      class="modal-iframe"
-      id="flipFrame"
-      src=""
-      title="Treasure Japan Flipbook"
-      allowfullscreen
-    ></iframe>
-  </div>
-</div>
-<script>
+document.addEventListener("keydown", e => { if (e.key === "Escape") { closePop(); closeFlipbook(); } });
 function openFlipbook() {
-  const modal = document.getElementById('flipModal');
-  const frame = document.getElementById('flipFrame');
-  frame.src = 'https://tenonde.jp/3d-flip-book/treasure-japan-a3-en-priced/';
-  modal.classList.add('open');
+  const modal = document.getElementById("flipModal");
+  const frame = document.getElementById("flipFrame");
+  frame.src = "https://tenonde.jp/3d-flip-book/treasure-japan-a3-en-priced/";
+  modal.classList.add("open");
 }
 function closeFlipbook() {
-  const modal = document.getElementById('flipModal');
-  const frame = document.getElementById('flipFrame');
-  modal.classList.remove('open');
-  frame.src = '';
+  document.getElementById("flipModal").classList.remove("open");
+  document.getElementById("flipFrame").src = "";
 }
-document.getElementById('flipModal').addEventListener('click', function(e) {
+document.getElementById("flipModal").addEventListener("click", function(e) {
   if (e.target === this) closeFlipbook();
 });
 </script>
