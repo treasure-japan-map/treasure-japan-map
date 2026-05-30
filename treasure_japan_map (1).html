@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>静けさが人を変える ― Treasure Japan 創業物語</title>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyokasho NK-R",serif}
+body{font-family:"Klee One","BIZ UDPMincho","游教科書体 Std","UD Digi Kyokasho NK-R",serif;background:#FFFFFF;color:#1A1A2E;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:32px 16px}
+.wrap{display:flex;gap:0;width:100%;max-width:980px;background:#fff;border-radius:16px;border:1px solid #E0DFD8;overflow:hidden;min-height:800px}
+.map-area{flex:1;min-width:0;padding:28px 20px 28px 12px;display:flex;gap:0}
+.axis{display:flex;flex-direction:column;justify-content:space-around;align-items:center;padding:48px 0 18px;margin-right:10px;border-right:1px dashed #CCCBC4;width:24px;flex-shrink:0}
+.axis span{font-size:11px;color:#9999AA;writing-mode:vertical-rl;letter-spacing:2px}
+.content{flex:1;min-width:0}
+.map-title{font-size:15px;font-weight:600;color:#1A1A2E;text-align:center;padding:14px 0 4px;letter-spacing:1px}
+.map-sub{font-size:12px;color:#999;text-align:center;margin-bottom:20px}
+.rows{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:10px}
+.group{border-radius:12px;padding:14px;flex:1;border:1.5px solid transparent;overflow:hidden}
+.group-title{font-size:11px;font-weight:600;margin-bottom:10px;text-align:center;letter-spacing:1px}
+.cards{display:grid;gap:6px}
+.card{border-radius:8px;padding:10px 6px;cursor:pointer;transition:opacity .15s,transform .15s;border:none;text-align:center;width:100%}
+.card:hover{opacity:.82;transform:scale(1.03)}
+.card:active{transform:scale(.97)}
+.card-ch{font-size:10px;font-weight:600;display:block;margin-bottom:3px}
+.card-title{font-size:10px;display:block;opacity:.88;line-height:1.4}
+.hint{font-size:11px;color:#BBB;text-align:center;margin-top:14px;padding-bottom:6px}
+.panel{width:0;overflow:hidden;transition:width .3s ease;border-left:1px solid #E0DFD8;background:#fff}
+.panel.open{width:290px}
+.panel-inner{width:290px;padding:28px 20px;height:100%}
+.panel-close{float:right;background:none;border:1px solid #E0DFD8;border-radius:50%;width:26px;height:26px;cursor:pointer;color:#888;font-size:15px;line-height:24px;text-align:center}
+.panel-close:hover{background:#f0f0f0}
+.panel-tag{display:inline-block;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:14px}
+.panel-title{font-size:16px;font-weight:600;color:#1A1A2E;margin-bottom:14px;line-height:1.6;clear:both}
+.panel-body{font-size:13px;color:#555;line-height:2.0}
+.g-purple{background:#FFFFFF;border-color:#534AB7}
+.g-purple .group-title{color:#3C3489}
+.g-purple .card{background:#534AB7;color:#EEEDFE}
+.g-coral{background:#FFFFFF;border-color:#D85A30}
+.g-coral .group-title{color:#712B13}
+.g-coral .card{background:#D85A30;color:#FAECE7}
+.g-teal{background:#FFFFFF;border-color:#0F6E56}
+.g-teal .group-title{color:#085041}
+.g-teal .card{background:#0F6E56;color:#E1F5EE}
+.g-amber{background:#FFFFFF;border-color:#993556}
+.g-amber .group-title{color:#72243E}
+.g-amber .card{background:#993556;color:#FBEAF0}
+.g-blue{background:#FFFFFF;border-color:#185FA5}
+.g-blue .group-title{color:#0C447C}
+.g-blue .card{background:#185FA5;color:#E6F1FB}
+.g-gray{background:#FFFFFF;border-color:#C9991A}
+.g-gray .group-title{color:#7A5C00;font-size:13px;margin-bottom:10px;letter-spacing:1px}
+.g-gray .card{background:#C9991A;color:#FFFFFF;padding:12px 6px}
+.g-gray .card-title{font-size:12px;opacity:1;font-weight:600}
+.core-section{margin-top:28px;padding:24px 20px;background:#FFFFFF;border-radius:14px;border:2.5px solid #C9991A}
+.core-label{font-size:12px;color:#C9991A;letter-spacing:4px;text-align:center;margin-bottom:16px;font-weight:600}
+.core-cards{display:flex;align-items:stretch;gap:12px;justify-content:center}
+.core-arrow{display:flex;align-items:center;flex-shrink:0;padding:0 2px}
+.core-card{border-radius:10px;padding:20px 14px;cursor:pointer;transition:background .2s,transform .15s;border:2px solid #C9991A;background:#C9991A;text-align:center;flex:1;font-size:15px;font-weight:600;color:#FFFFFF;letter-spacing:1.5px}
+.core-card:hover{background:#B8880F;transform:translateY(-2px)}
+.core-card:active{transform:scale(.98)}
+.row-arrow{display:flex;align-items:center;justify-content:center;height:14px;margin:-2px 0}
+.row-arrow svg{display:block}
+.action-bar{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.btn-flip{background:#C9991A;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;font-family:inherit;letter-spacing:1px;transition:background .2s,transform .15s}
+.btn-flip:hover{background:#B8880F;transform:translateY(-2px)}
+.btn-site{background:#fff;color:#1A1A2E;border:2px solid #534AB7;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;font-family:inherit;letter-spacing:1px;text-decoration:none;transition:background .2s,transform .15s}
+.btn-site:hover{background:#EEEDFE;transform:translateY(-2px)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:14px;overflow:hidden;width:92vw;max-width:960px;height:88vh;display:flex;flex-direction:column;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid #E0DFD8;flex-shrink:0}
+.modal-header span{font-size:13px;font-weight:600;color:#7A5C00;letter-spacing:1px}
+.modal-close{background:none;border:1px solid #E0DFD8;border-radius:50%;width:28px;height:28px;cursor:pointer;color:#888;font-size:16px;line-height:26px;text-align:center}
+.modal-close:hover{background:#f0f0f0}
+.modal-iframe{flex:1;border:none;width:100%}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="map-area">
+    <div class="axis">
+      <span>過去</span><span>現在</span>
+    </div>
+    <div class="content">
+      <div class="map-title">静けさが人を変える ― Treasure Japan 創業物語</div>
+      <div class="map-sub">章立て構成マップ　― 各章をクリックすると右側に説明が開きます</div>
+      <div class="rows">
+        <div class="row">
+          <div class="group g-purple">
+            <div class="group-title">① 自己・人生の軌跡</div>
+            <div class="cards" style="grid-template-columns:1fr 1fr">
+              <button class="card" onclick="openPanel('preface')"><span class="card-ch">序章</span><span class="card-title">なぜ今なのか</span></button>
+              <button class="card" onclick="openPanel('ch1')"><span class="card-ch">第一章</span><span class="card-title">私は何者か</span></button>
+              <button class="card" onclick="openPanel('ch2')"><span class="card-ch">第二章</span><span class="card-title">遠回りの人生</span></button>
+              <button class="card" onclick="openPanel('ch4')"><span class="card-ch">第四章</span><span class="card-title">挫折という贈り物</span></button>
+            </div>
+          </div>
+          <div class="group g-coral">
+            <div class="group-title">② 転換点・内なる目覚め</div>
+            <div class="cards" style="grid-template-columns:1fr 1fr">
+              <button class="card" onclick="openPanel('ch3')"><span class="card-ch">第三章</span><span class="card-title">美との出会い</span></button>
+              <button class="card" onclick="openPanel('ch5')"><span class="card-ch">第五章</span><span class="card-title">死を覚悟して</span></button>
+              <button class="card" onclick="openPanel('ch6')"><span class="card-ch">第六章</span><span class="card-title">静けさの価値</span></button>
+              <button class="card" onclick="openPanel('ch7')"><span class="card-ch">第七章</span><span class="card-title">無音を奏でる人</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="row-arrow">
+          <svg width="200" height="18" viewBox="0 0 200 18"><line x1="100" y1="1" x2="100" y2="13" stroke="#AAAAAA" stroke-width="1.5"/><polyline points="94,8 100,15 106,8" fill="none" stroke="#AAAAAA" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        </div>
+        <div class="row">
+          <div class="group g-teal">
+            <div class="group-title">③ 書・同志との出会い</div>
+            <div class="cards" style="grid-template-columns:1fr 1fr">
+              <button class="card" onclick="openPanel('ch8')"><span class="card-ch">第八章</span><span class="card-title">同志との出会い・宍戸瑞鳳</span></button>
+              <button class="card" onclick="openPanel('ch9')"><span class="card-ch">第九章</span><span class="card-title">書は人なり</span></button>
+            </div>
+          </div>
+          <div class="group g-amber">
+            <div class="group-title">④ ビジョン・世界観</div>
+            <div class="cards" style="grid-template-columns:1fr 1fr">
+              <button class="card" onclick="openPanel('ch10')"><span class="card-ch">第十章</span><span class="card-title">なぜ外国人か</span></button>
+              <button class="card" onclick="openPanel('ch11')"><span class="card-ch">第十一章</span><span class="card-title">世界に必要な理由</span></button>
+              <button class="card" onclick="openPanel('ch12')"><span class="card-ch">第十二章</span><span class="card-title">守破離</span></button>
+              <button class="card" onclick="openPanel('ch13')"><span class="card-ch">第十三章</span><span class="card-title">Not a Tour.</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="row-arrow">
+          <svg width="200" height="18" viewBox="0 0 200 18"><line x1="100" y1="1" x2="100" y2="13" stroke="#AAAAAA" stroke-width="1.5"/><polyline points="94,8 100,15 106,8" fill="none" stroke="#AAAAAA" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        </div>
+        <div class="row">
+          <div class="group g-blue" style="flex:1">
+            <div class="group-title">⑤ 体験・感動・人生の結び</div>
+            <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+              <button class="card" onclick="openPanel('ch14')"><span class="card-ch">第十四章</span><span class="card-title">A Quiet Turning.</span></button>
+              <button class="card" onclick="openPanel('ch15')"><span class="card-ch">第十五章</span><span class="card-title">まだ見ぬ自分</span></button>
+              <button class="card" onclick="openPanel('ch16')"><span class="card-ch">第十六章</span><span class="card-title">感動という仕事</span></button>
+              <button class="card" onclick="openPanel('epilogue')"><span class="card-ch">終章</span><span class="card-title">人生もまた一幅の書</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="core-section">
+        <div class="core-label">― 核心メッセージ ―</div>
+        <div class="core-cards">
+          <button class="core-card" onclick="openPanel('msg2')"><span>Not a Tour.</span></button>
+          <button class="core-card" onclick="openPanel('msg1')"><span>書は人なり</span></button>
+          <button class="core-card" onclick="openPanel('msg3')"><span>A Quiet Turning.</span></button>
+        </div>
+      </div>
+      <div class="action-bar">
+        <button class="btn-flip" onclick="openFlipbook()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          📖 フリップブックを開く
+        </button>
+        <a class="btn-site" href="https://treasure-japan.jp/" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          🌐 公式サイトへ
+        </a>
+      </div>
+      <div class="hint">← 各章・メッセージをクリックすると右側に説明が表示されます</div>
+    </div>
+  </div>
+  <div class="panel" id="panel">
+    <div class="panel-inner">
+      <button class="panel-close" onclick="closePanel()">×</button>
+      <div class="panel-tag" id="panel-tag"></div>
+      <div class="panel-title" id="panel-title"></div>
+      <div class="panel-body" id="panel-body"></div>
+    </div>
+  </div>
+</div>
+<script>
+const DATA = {
+  preface:  {tag:"序章",color:"#534AB7",bg:"#EEEDFE",title:"なぜ、今、Treasure Japanなのか",body:"59歳にして、長年温めてきた想いをついに形にする。単なる起業ではなく、人生をかけた挑戦。成功も失敗も挫折も——すべてが今この瞬間へとつながっている。まるで温かな何かに包まれながら、静かに背中を押されているような感覚の中、新しい物語が始まる。"},
+  ch1:      {tag:"第一章",color:"#534AB7",bg:"#EEEDFE",title:"私は何者なのか",body:"証券会社の営業として社会に出るも、心のどこかに美術や文化への憧れを持ち続けた。ニューヨークで過ごした一年間、多くの美術館を巡りながら人間の創造性の力に心を奪われた。その感動が、今も原点になっている。"},
+  ch2:      {tag:"第二章",color:"#534AB7",bg:"#EEEDFE",title:"遠回りの人生",body:"画廊勤務から画商として独立するも、経営は厳しく断念。その後、住宅リフォーム業界へ。転職は十回を超えた。しかし今振り返ると、仕事を探していたのではなく、自分の人生の意味を探していたのだと気づく。"},
+  ch4:      {tag:"第四章",color:"#534AB7",bg:"#EEEDFE",title:"挫折という贈り物",body:"若い頃は成功を求め、評価を求め、経済的豊かさを求めた。失敗すれば落ち込み、評価されれば喜ぶ——その繰り返し。しかし今思う。失敗したからこそ見えた景色があった。意味のなかった出来事など一つもなかったのだと。"},
+  ch3:      {tag:"第三章",color:"#D85A30",bg:"#FAECE7",title:"美との出会い",body:"惹かれるのは美しい物そのものではなく、美しい物を生み出そうとする人の姿。真剣な眼差し、集中した表情、極限まで磨かれた技術、そしてその奥にある祈りにも似た想い。人が本気で何かに向き合う姿に胸が熱くなる。"},
+  ch5:      {tag:"第五章",color:"#D85A30",bg:"#FAECE7",title:"死を覚悟して知ったこと",body:"約五年前、病によって死を覚悟した。一口の水、静かな呼吸、誰かの手の温かさ——当たり前だと思っていたものが、決して当たり前ではないと知った。病棟でスリッパを引きずりながら歩く音が「生きる」そのものに聞こえた。人生は長さではなく、どれだけ本気で生きたかだと。"},
+  ch6:      {tag:"第六章",color:"#D85A30",bg:"#FAECE7",title:"静けさの価値",body:"病から回復後、大きな成功よりも小さな幸せ、派手な刺激よりも静かな感動に価値を感じるようになった。現代社会は速く便利になった一方、人は静けさを失いつつある。深い呼吸、感謝、季節の移ろい——本当に大切なものはいつも静かな場所にあった。"},
+  ch7:      {tag:"第七章",color:"#D85A30",bg:"#FAECE7",title:"無音を奏でる人",body:"古典尺八の第一人者が語った言葉——「私が最も得意な音は無音です。静けさを最大限美しくするために音を奏でている」。その瞬間、日本文化の本質を見た気がした。余白、間、静寂——見えないものに価値を見出す文化。それがTreasure Japanの目指すところ。"},
+  ch8:      {tag:"第八章",color:"#0F6E56",bg:"#E1F5EE",title:"同志との出会い — 宍戸瑞鳳",body:"書導家・宍戸瑞鳳先生は三十七年以上書の道を歩み、三千人を超える人々を送り出してきた。先生が教えてくれたのは「書は文字を書く技術ではなく、生き方である」ということ。筆が紙に触れる前から書は始まっている——その世界に魅了された。"},
+  ch9:      {tag:"第九章",color:"#0F6E56",bg:"#E1F5EE",title:"書は人なり",body:"「書は人なり」——筆は嘘をつかない。焦りも、迷いも、優しさも、大胆さも、その人の呼吸・心・人生のすべてが線となって現れる。上手な字を書いてほしいわけではない。その人自身が現れてほしい。その人だけの線、その人だけの美しさを大切にしたい。"},
+  ch10:     {tag:"第十章",color:"#993556",bg:"#FBEAF0",title:"なぜ外国人なのか",body:"外国人に教えたいのではなく、逆に彼らの純粋な感動を通して、私たち自身が日本文化の価値を再発見させてもらっている。初めて筆を持つ人、墨の香りに驚く人、おりんの音に目を閉じる人、涙を流す人——その姿はとても美しい。日本文化には国境を越える力がある。"},
+  ch11:     {tag:"第十一章",color:"#993556",bg:"#FBEAF0",title:"日本文化が世界に必要な理由",body:"日本文化が優れているというより、現代社会が忘れかけているものが残っている。静けさ、余白、礼節、慎み、感謝、自然との共生、今この瞬間を大切にする感覚——これらはこれからの時代にますます価値を持つ。"},
+  ch12:     {tag:"第十二章",color:"#993556",bg:"#FBEAF0",title:"守破離",body:"まず学ぶ（守）、そして試す（破）、そして自由になる（離）。型は人を縛るためにあるのではなく、自由になるためにある。呼吸を整え、姿勢を整え、基本を学び、最後には自分らしく表現する。人生そのものに似ている。"},
+  ch13:     {tag:"第十三章",color:"#993556",bg:"#FBEAF0",title:"Not a Tour.",body:"提供したいのは観光ではない。名所巡りでも、写真を撮って終わる体験でもない。その人自身と向き合う時間。だから私たちは「Not a Tour.」という言葉を掲げている。"},
+  ch14:     {tag:"第十四章",color:"#185FA5",bg:"#E6F1FB",title:"A Quiet Turning.",body:"本当に大切な変化は多くの場合とても静かだ。価値観が少し変わる、見える景色が少し変わる、呼吸が少し深くなる、誰かへの感謝を思い出す、自分自身を少し好きになる——そんな静かな転機こそがTreasure Japanの願い。"},
+  ch15:     {tag:"第十五章",color:"#185FA5",bg:"#E6F1FB",title:"まだ見ぬ自分との出会い",body:"大きな紙の前に立ち、大きな筆を持ち、静寂の中で集中する。その時、人は普段の自分から少し離れ、肩書きも年齢も立場も忘れ、本来の自分に近づいていく。書き終えた後の表情には、書く前とは違う人がいる。人はいつからでも変われる。"},
+  ch16:     {tag:"第十六章",color:"#185FA5",bg:"#E6F1FB",title:"感動という仕事",body:"大筆の音、墨を磨る音、おりんの余韻、鳥の声、雨音、寺の空気、真剣なまなざし——それらすべてが重なり一つの体験になる。作りたいのは作品ではなく感動。心が震える時間。人生の中で忘れられない記憶。それが私たちの仕事。"},
+  epilogue: {tag:"終章",color:"#185FA5",bg:"#E6F1FB",title:"人生もまた、一幅の書",body:"証券会社も、画廊も、画商も、リフォームの仕事も、病も、出会いも——すべてが今の一本の線になっている。Treasure Japanは会社の名前だが、私にとっては人生そのものへの感謝の表現。世界中の人々と共に、新しい物語を紡いでいきたい。"},
+  msg1:     {tag:"核心",color:"#7A5C00",bg:"#FDF6E3",title:"書は人なり",body:"筆は嘘をつかない。焦りも迷いも優しさも大胆さも、その人の呼吸・心・人生のすべてが線となって現れる。上手な字より、その人自身が現れること——それを大切にしたい。"},
+  msg2:     {tag:"核心",color:"#7A5C00",bg:"#FDF6E3",title:"Not a Tour.",body:"観光ではなく、名所巡りでもなく、写真を撮って終わる体験でもない。その人自身と向き合う時間を提供する。"},
+  msg3:     {tag:"核心",color:"#7A5C00",bg:"#FDF6E3",title:"A Quiet Turning.",body:"大きな転機よりも、静かな変化を大切にする。価値観が少し変わる、呼吸が少し深くなる——そんな静かな転機がTreasure Japanの願い。"},
+};
+function openPanel(key) {
+  const d = DATA[key];
+  if (!d) return;
+  const tag = document.getElementById('panel-tag');
+  tag.textContent = d.tag;
+  tag.style.background = d.bg;
+  tag.style.color = d.color;
+  document.getElementById('panel-title').textContent = d.title;
+  document.getElementById('panel-body').textContent = d.body;
+  document.getElementById('panel').classList.add('open');
+}
+function closePanel() {
+  document.getElementById('panel').classList.remove('open');
+}
+</script>
+<!-- Flipbook Modal -->
+<div class="modal-overlay" id="flipModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span>📖 Treasure Japan — フリップブック</span>
+      <button class="modal-close" onclick="closeFlipbook()">×</button>
+    </div>
+    <iframe
+      class="modal-iframe"
+      id="flipFrame"
+      src=""
+      title="Treasure Japan Flipbook"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+<script>
+function openFlipbook() {
+  const modal = document.getElementById('flipModal');
+  const frame = document.getElementById('flipFrame');
+  frame.src = 'https://tenonde.jp/3d-flip-book/treasure-japan-a3-en-priced/';
+  modal.classList.add('open');
+}
+function closeFlipbook() {
+  const modal = document.getElementById('flipModal');
+  const frame = document.getElementById('flipFrame');
+  modal.classList.remove('open');
+  frame.src = '';
+}
+document.getElementById('flipModal').addEventListener('click', function(e) {
+  if (e.target === this) closeFlipbook();
+});
+</script>
+</body>
+</html>
